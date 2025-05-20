@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: bdb
+    networks:
+      - appnet
+    volumes:
+      - db_data:/var/lib/postgresql/data
+       
+  app:
+    build: .
+    command: ./main
+    depends_on:
+      - db
+    environment:
+      BANK_POSTGRES_HOST: db:5432
+    networks:
+      - appnet
+    ports:
+      - "8080:8080"
+
+networks:
+  appnet:
+volumes:
+  db_data:
