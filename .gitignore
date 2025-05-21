@@ -1,0 +1,3 @@
+# Ignore Helm dependency directory 
+charts/*/charts/
+charts/*/Chart.lock
