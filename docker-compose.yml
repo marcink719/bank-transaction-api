@@ -14,7 +14,8 @@ services:
       - db_data:/var/lib/postgresql/data
        
   app:
-    build: .
+    image: ghcr.io/marcink719/bank-transaction-api:latest
+    #build: .
     command: ./main
     depends_on:
       - db

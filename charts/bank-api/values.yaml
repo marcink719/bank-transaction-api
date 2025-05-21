@@ -1,0 +1,28 @@
+replicaCount: 5
+
+namespace: bank-api
+
+image:
+  repository: ghcr.io/marcink719/bank-transaction-api
+  tag: latest
+
+service:
+  port: 8080
+  targetPort: 8080
+ 
+postgresql:
+  enabled: true 
+  host: bank-api-postgresql
+  auth:
+    username: test
+    password: test
+    database: bdb
+  primary:  
+    persistence:
+      enabled: false
+      storageClass: "standard"  
+      accessMode: ReadWriteOnce
+      size: 8Gi
+  service:
+    ports:
+      postgresql: 5432
